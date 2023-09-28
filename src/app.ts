@@ -1,13 +1,18 @@
 class Invoice{
-    client: string;
-    details: string;
-    amount: number;
 
-    constructor(c: string, d: string, a: number){
-        this.client = c;
-        this. details = d;
-        this.amount = a;
-    }
+    // //access modifiers
+    // readonly client: string;// can read inside and outside but can't change
+    // private details: string;//can't access from outside the class, but can read and change inside the class
+    // public amount: number;// can accsess and change from inside and outside
+
+
+    //or
+    constructor(
+        readonly client: string, 
+        private details: string, 
+        public amount: number,
+    ){}
+    
     format(){
         return `${this.client} owes $${this.amount} for ${this.details}`
     }
@@ -15,12 +20,16 @@ class Invoice{
 
 const invoice1 = new Invoice('Mario', 'work on website', 250);
 const invoice2 = new Invoice('Luigi', 'work on website', 300);
+const invoice3 = new Invoice('Yoshi', 'relax', 400);
 
 let invoices: Invoice[] = []; // you cant push anything else but objects derived from class Invoice
 invoices.push(invoice1);
 invoices.push(invoice2);
+invoices.push(invoice3);
 
-console.log(invoices)
+invoices.forEach(inv => {
+    console.log(inv.client, inv.amount, inv.format());
+});
 
 //////////////////////////////////////////////////
 
