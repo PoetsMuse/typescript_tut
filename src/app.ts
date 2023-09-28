@@ -16,7 +16,13 @@ class Invoice{
 const invoice1 = new Invoice('Mario', 'work on website', 250);
 const invoice2 = new Invoice('Luigi', 'work on website', 300);
 
-console.log(invoice1, invoice2)
+let invoices: Invoice[] = []; // you cant push anything else but objects derived from class Invoice
+invoices.push(invoice1);
+invoices.push(invoice2);
+
+console.log(invoices)
+
+//////////////////////////////////////////////////
 
 const anchor = document.querySelector('a')!;
 
