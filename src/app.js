@@ -1,4 +1,19 @@
-import { Invoice } from './classes/Invoice.js';
+"use strict";
+class Invoice {
+    // //access modifiers
+    // readonly client: string;// can read inside and outside but can't change
+    // private details: string;//can't access from outside the class, but can read and change inside the class
+    // public amount: number;// can accsess and change from inside and outside
+    //or
+    constructor(client, details, amount) {
+        this.client = client;
+        this.details = details;
+        this.amount = amount;
+    }
+    format() {
+        return `${this.client} owes $${this.amount} for ${this.details}`;
+    }
+}
 const invoice1 = new Invoice('Mario', 'work on website', 250);
 const invoice2 = new Invoice('Luigi', 'work on website', 300);
 const invoice3 = new Invoice('Yoshi', 'relax', 400);
