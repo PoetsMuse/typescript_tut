@@ -1,51 +1,37 @@
-//interfaces
-interface isPerson{
-    name: string;
-    age: number;
-    speak(a: string): void;
-    spend(a: number): number;
-}
-
-const me: isPerson = {
-    name: "Kate",
-    age: 40,
-    speak(text: string): void {
-        console.log(text);
-    },
-    spend(amount: number): number{
-        console.log("I spend", amount);
-        return amount;
-    }
-};
-
-const greetPerson = (person: isPerson) => {
-    console.log('hello', person.name)
-}
-greetPerson(me);
-console.log(me);
-
-////////////////////////////////////////////////
-
 import {Invoice} from './classes/Invoice.js';
+import {Payment} from './classes/Payment.js';
+import {HasFormatter} from './interfaces/HasFormatter.js';
 
-const invoice1 = new Invoice('Mario', 'work on website', 250);
-const invoice2 = new Invoice('Luigi', 'work on website', 300);
-const invoice3 = new Invoice('Yoshi', 'relax', 400);
+// let docOne: HasFormatter;
+// let docTwo: HasFormatter;
 
-let invoices: Invoice[] = []; // you cant push anything else but objects derived from class Invoice
-invoices.push(invoice1);
-invoices.push(invoice2);
-invoices.push(invoice3);
+// docOne = new Invoice('yoshi', 'web work', 250);
+// docTwo = new Payment('mario', 'plumbing work', 200);
 
-invoices.forEach(inv => {
-    console.log(inv.client, inv.amount, inv.format());
-});
+// let docs: HasFormatter[] = [];
+// docs.push(docOne);
+// docs.push(docTwo);
+
+// console.log(docs)
+
+// const invoice1 = new Invoice('Mario', 'work on website', 250);
+// const invoice2 = new Invoice('Luigi', 'work on website', 300);
+// const invoice3 = new Invoice('Yoshi', 'relax', 400);
+
+// let invoices: Invoice[] = []; // you cant push anything else but objects derived from class Invoice
+// invoices.push(invoice1);
+// invoices.push(invoice2);
+// invoices.push(invoice3);
+
+// invoices.forEach(inv => {
+//     console.log(inv.client, inv.amount, inv.format());
+// });
 
 //////////////////////////////////////////////////
 
-const anchor = document.querySelector('a')!;
+// const anchor = document.querySelector('a')!;
 
-console.log(anchor.href);
+// console.log(anchor.href);
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
 
@@ -60,10 +46,12 @@ const amount = document.querySelector('#amount') as HTMLInputElement;
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
 
-    console.log(
-        type.value,
-        toFrom.value,
-        details.value,
-        amount.valueAsNumber
-    );
+    let doc: HasFormatter;
+    if (type.value === 'invoice'){
+        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber)
+    } else {
+        doc = new Payment(toFrom.value, details.value, amount.valueAsNumber)
+    }
+
+    console.log(doc);
 })
