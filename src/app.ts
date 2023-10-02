@@ -61,3 +61,34 @@ form.addEventListener('submit', (e: Event) => {
     list.render(doc, type.value, 'end')
     
 })
+////GENERICS
+//Generics allows us to create reusable blocks of code which can be used with different types 
+
+const addUID = <T extends {name: string, age: number}>(obj: T) => { // T is capturing whatever item we pass in to the function
+    let uid = Math.floor(Math.random() * 100);
+    return {...obj, uid};
+}
+let docOne = addUID({name: 'yoshi', age: 40});
+console.log(docOne);
+
+//Generics with interfaces
+interface Resourse<T>{
+    uid: number;
+    resourceName: string;
+    data: T; // due to the T data may take any data type
+}
+
+const docThree: Resourse<string> = {
+    uid: 1,
+    resourceName: 'person',
+    data: 'Shaun'
+}
+const docFour: Resourse<string[]> = {
+    uid: 2,
+    resourceName: 'shoppingList',
+    data: ['bread', 'milk', 'juice']
+}
+console.log(docThree, docFour);
+
+//ENUMS  
+//Enums is a special type in type script that allows to store constants or keywords and associate them with a numeric value
