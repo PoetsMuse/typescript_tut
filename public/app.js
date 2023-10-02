@@ -51,16 +51,24 @@ const addUID = (obj) => {
 };
 let docOne = addUID({ name: 'yoshi', age: 40 });
 console.log(docOne);
+//ENUMS  
+//Enums is a special type in type script that allows to store constants or keywords and associate them with a numeric value
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["AUTHOR"] = 1] = "AUTHOR";
+    ResourceType[ResourceType["FILM"] = 2] = "FILM";
+    ResourceType[ResourceType["DIRECTOR"] = 3] = "DIRECTOR";
+    ResourceType[ResourceType["PERSON"] = 4] = "PERSON";
+})(ResourceType || (ResourceType = {}));
 const docThree = {
     uid: 1,
-    resourceName: 'person',
+    resourceType: ResourceType.AUTHOR,
     data: 'Shaun'
 };
 const docFour = {
     uid: 2,
-    resourceName: 'shoppingList',
+    resourceType: ResourceType.BOOK,
     data: ['bread', 'milk', 'juice']
 };
 console.log(docThree, docFour);
-//ENUMS  
-//Enums is a special type in type script that allows to store constants or keywords and associate them with a numeric value

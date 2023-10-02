@@ -71,24 +71,25 @@ const addUID = <T extends {name: string, age: number}>(obj: T) => { // T is capt
 let docOne = addUID({name: 'yoshi', age: 40});
 console.log(docOne);
 
+//ENUMS  
+//Enums is a special type in type script that allows to store constants or keywords and associate them with a numeric value
+enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
+
 //Generics with interfaces
 interface Resourse<T>{
     uid: number;
-    resourceName: string;
+    resourceType: ResourceType;
     data: T; // due to the T data may take any data type
 }
 
 const docThree: Resourse<string> = {
     uid: 1,
-    resourceName: 'person',
+    resourceType: ResourceType.AUTHOR,
     data: 'Shaun'
 }
 const docFour: Resourse<string[]> = {
     uid: 2,
-    resourceName: 'shoppingList',
+    resourceType: ResourceType.BOOK,
     data: ['bread', 'milk', 'juice']
 }
 console.log(docThree, docFour);
-
-//ENUMS  
-//Enums is a special type in type script that allows to store constants or keywords and associate them with a numeric value
