@@ -34,12 +34,14 @@ const ul = document.querySelector('ul');
 const list = new ListTemplate(ul);
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    let values;
+    values = [toFrom.value, details.value, amount.valueAsNumber];
     let doc;
     if (type.value === 'invoice') {
-        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
+        doc = new Invoice(...values);
     }
     else {
-        doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+        doc = new Payment(...values);
     }
     list.render(doc, type.value, 'end');
 });
@@ -72,3 +74,8 @@ const docFour = {
     data: ['bread', 'milk', 'juice']
 };
 console.log(docThree, docFour);
+///TUPLES
+//unlike arrays, once you add a value in the tuple you can't change it
+let tup = ['Me', 40, true];
+let student;
+student = ['Kate', 40];

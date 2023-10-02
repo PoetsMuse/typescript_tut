@@ -51,11 +51,14 @@ const list = new ListTemplate(ul)
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
 
+    let values: [string, string, number];
+    values = [toFrom.value, details.value, amount.valueAsNumber];
+
     let doc: HasFormatter;
     if (type.value === 'invoice'){
-        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber)
+        doc = new Invoice(...values)
     } else {
-        doc = new Payment(toFrom.value, details.value, amount.valueAsNumber)
+        doc = new Payment(...values)
     }
 
     list.render(doc, type.value, 'end')
@@ -93,3 +96,11 @@ const docFour: Resourse<string[]> = {
     data: ['bread', 'milk', 'juice']
 }
 console.log(docThree, docFour);
+
+///TUPLES
+//unlike arrays, once you add a value in the tuple you can't change it
+
+let tup: [string, number, boolean] = ['Me', 40, true];
+
+let student: [string, number];
+student = ['Kate', 40];
